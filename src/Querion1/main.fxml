@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="742.0" prefWidth="887.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Querion1.mainController">
+    <children>
+      <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Query 1">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="743.0" prefWidth="1316.0">
+                     <children>
+                        <ScrollPane layoutX="-1.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <content>
+                              <AnchorPane prefHeight="794.0" prefWidth="867.0">
+                                 <children>
+                                    <TextField fx:id="col1" layoutX="14.0" layoutY="74.0" />
+                                    <TextField fx:id="col2" layoutX="209.0" layoutY="74.0" />
+                                    <TextField fx:id="col3" layoutX="404.0" layoutY="74.0" />
+                                    <TextField fx:id="col4" layoutX="599.0" layoutY="74.0" />
+                                    <Label layoutX="14.0" layoutY="55.0" text="Col1" />
+                                    <Label layoutX="599.0" layoutY="55.0" text="Col4" />
+                                    <Label layoutX="404.0" layoutY="55.0" text="Col3" />
+                                    <Label layoutX="209.0" layoutY="55.0" text="Col2" />
+                                    <Label layoutX="14.0" layoutY="121.0" text="FROM">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="seldb" layoutX="14.0" layoutY="169.0" />
+                                    <TextField fx:id="seltable" layoutX="224.0" layoutY="169.0" />
+                                    <Label layoutX="14.0" layoutY="148.0" text="Database" />
+                                    <Label layoutX="224.0" layoutY="148.0" text="Table" />
+                                    <Label layoutX="14.0" layoutY="14.0" text="SELECT">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="cb1" layoutX="14.0" layoutY="237.0" prefWidth="150.0" />
+                                    <ComboBox fx:id="cb2" layoutX="14.0" layoutY="294.0" prefWidth="150.0" />
+                                    <Label layoutX="179.0" layoutY="242.0" text="JOIN">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="179.0" layoutY="299.0" text="JOIN">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="jcol1" layoutX="224.0" layoutY="237.0" />
+                                    <Label layoutX="417.0" layoutY="242.0" text="ON">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="jcol2" layoutX="449.0" layoutY="237.0" />
+                                    <Label layoutX="449.0" layoutY="216.0" text="Left column" />
+                                    <Label layoutX="449.0" layoutY="273.0" text="Left column" />
+                                    <TextField fx:id="jcol5" layoutX="449.0" layoutY="294.0" />
+                                    <Label layoutX="417.0" layoutY="299.0" text="ON">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="jcol4" layoutX="224.0" layoutY="294.0" />
+                                    <Label layoutX="642.0" layoutY="242.0" text="=" />
+                                    <Label layoutX="642.0" layoutY="299.0" text="=" />
+                                    <TextField fx:id="jcol6" layoutX="659.0" layoutY="297.0" />
+                                    <Label layoutX="659.0" layoutY="276.0" text="Right column" />
+                                    <Label layoutX="659.0" layoutY="219.0" text="Right column" />
+                                    <TextField fx:id="jcol3" layoutX="659.0" layoutY="240.0" />
+                                    <Label layoutX="14.0" layoutY="346.0" text="WHERE">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="371.0" text="Condition:" />
+                                    <TextField fx:id="wcol1" layoutX="14.0" layoutY="392.0" prefHeight="31.0" prefWidth="155.0" />
+                                    <TextField fx:id="wcol2" layoutX="260.0" layoutY="392.0" prefHeight="31.0" prefWidth="126.0" />
+                                    <ComboBox fx:id="wcb1" layoutX="184.0" layoutY="392.0" prefHeight="31.0" prefWidth="40.0" />
+                                    <ComboBox fx:id="wcb2" layoutX="410.0" layoutY="392.0" prefHeight="31.0" prefWidth="53.0" />
+                                    <ComboBox fx:id="wcb3" layoutX="650.0" layoutY="392.0" prefHeight="31.0" prefWidth="62.0" />
+                                    <TextField fx:id="wcol4" layoutX="727.0" layoutY="392.0" prefHeight="31.0" prefWidth="126.0" />
+                                    <TextField fx:id="wcol3" layoutX="481.0" layoutY="392.0" prefHeight="31.0" prefWidth="155.0" />
+                                    <Label layoutX="19.0" layoutY="436.0" text="GROUP BY">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <CheckBox fx:id="gb1" layoutX="12.0" layoutY="465.0" mnemonicParsing="false" text="Col1" />
+                                    <CheckBox fx:id="gb4" layoutX="224.0" layoutY="465.0" mnemonicParsing="false" text="Col4" />
+                                    <CheckBox fx:id="gb3" layoutX="150.0" layoutY="465.0" mnemonicParsing="false" text="Col3" />
+                                    <CheckBox fx:id="gb2" layoutX="83.0" layoutY="465.0" mnemonicParsing="false" text="Col2" />
+                                    <Label layoutX="22.0" layoutY="500.0" text="ORDER BY">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <RadioButton fx:id="obRad1" layoutX="108.0" layoutY="500.0" mnemonicParsing="false" onAction="#ascendButton" text="Ascending" />
+                                    <RadioButton fx:id="obRad2" layoutX="224.0" layoutY="500.0" mnemonicParsing="false" onAction="#descendButton" text="Descending" />
+                                    <TextField fx:id="obcol1" layoutX="18.0" layoutY="544.0" prefHeight="31.0" prefWidth="155.0" />
+                                    <TextField fx:id="obcol3" layoutX="348.0" layoutY="544.0" prefHeight="31.0" prefWidth="155.0" />
+                                    <TextField fx:id="obcol2" layoutX="185.0" layoutY="544.0" prefHeight="31.0" prefWidth="155.0" />
+                                    <Label layoutX="22.0" layoutY="521.0" text="First" />
+                                    <Label layoutX="183.0" layoutY="521.0" text="Second" />
+                                    <Label layoutX="348.0" layoutY="521.0" text="Third" />
+                                    <Button fx:id="executeBtn" layoutX="543.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="44.0" prefWidth="115.0" text="Execute">
+                                       <font>
+                                          <Font name="Arial" size="21.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="resetBtn" layoutX="670.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleResetButton" prefHeight="44.0" prefWidth="115.0" text="Reset">
+                                       <font>
+                                          <Font name="Arial" size="21.0" />
+                                       </font>
+                                    </Button>
+                                    <Label layoutX="481.0" layoutY="371.0" text="Condition 2:" />
+                                    <TextArea fx:id="outputBox" layoutX="8.0" layoutY="674.0" prefHeight="200.0" prefWidth="356.0" />
+                                    <Label layoutX="24.0" layoutY="653.0" text="OUTPUT" />
+                                 </children>
+                              </AnchorPane>
+                           </content></ScrollPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Goodies">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="316.0" prefWidth="385.0">
+                     <children>
+                        <Label layoutX="25.0" layoutY="581.0" text="CAST" />
+                        <TextField fx:id="cast1" layoutX="25.0" layoutY="638.0" />
+                        <Label layoutX="25.0" layoutY="617.0" text="Col/object to Cast" />
+                        <Label layoutX="611.0" layoutY="643.0" text="AS" />
+                        <TextField fx:id="cast2" layoutX="250.0" layoutY="638.0" />
+                        <Label layoutX="250.0" layoutY="617.0" text="Desired Datatype" />
+                        <TextField fx:id="cast3" layoutX="444.0" layoutY="638.0" prefHeight="31.0" prefWidth="33.0" />
+                        <Label layoutX="441.0" layoutY="617.0" text="# chars">
+                           <font>
+                              <Font size="10.0" />
+                           </font></Label>
+                        <TextField fx:id="cast4" layoutX="655.0" layoutY="638.0" />
+                        <Label layoutX="655.0" layoutY="617.0" text="New column name" />
+                        <Label layoutX="219.0" layoutY="636.0" text="🡒">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="14.0" prefHeight="22.0" prefWidth="235.0" text="EXTRACT Statement Generator">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="ex1" layoutX="14.0" layoutY="72.0" />
+                        <TextField fx:id="ex2" layoutX="324.0" layoutY="69.0" />
+                        <TextField fx:id="outputBox2" layoutX="655.0" layoutY="69.0" />
+                        <Label layoutX="597.0" layoutY="64.0" prefHeight="35.0" prefWidth="27.0" text="🡒">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="ex4" layoutX="324.0" layoutY="123.0" />
+                        <TextField fx:id="outputBox3" layoutX="654.0" layoutY="122.0" />
+                        <Label layoutX="249.0" layoutY="73.0" text="FROM" />
+                        <Label layoutX="249.0" layoutY="127.0" text="FROM" />
+                        <Label layoutX="597.0" layoutY="117.0" prefHeight="35.0" prefWidth="27.0" text="🡒">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="clrBtn1" layoutX="843.0" layoutY="69.0" mnemonicParsing="false" onAction="#ClrBtn1" prefHeight="26.0" prefWidth="29.0" text="CLR">
+                           <font>
+                              <Font size="8.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="clrBtn2" layoutX="843.0" layoutY="121.0" mnemonicParsing="false" onAction="#ClrBtn2" prefHeight="26.0" prefWidth="29.0" text="CLR">
+                           <font>
+                              <Font size="8.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="526.0" layoutY="69.0" mnemonicParsing="false" onAction="#ExecuteBtn2" text="Submit" />
+                        <Button layoutX="526.0" layoutY="122.0" mnemonicParsing="false" onAction="#ExecuteBtn3" text="Submit" />
+                        <Label layoutX="14.0" layoutY="49.0" text="Thing to Extract" />
+                        <Label layoutX="14.0" layoutY="100.0" text="Thing to Extract" />
+                        <TextField fx:id="ex3" layoutX="14.0" layoutY="122.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+    </children>
+</AnchorPane>
