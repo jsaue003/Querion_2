@@ -20,11 +20,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import static jdk.nashorn.internal.objects.NativeRegExp.test;
 
 
 
@@ -36,16 +34,9 @@ public class mainController implements Initializable {
     
     String select1 = "";
     public static String selectStatement = "";
-    public static String orderByList = "";
     public static String orderBy = "ORDER BY ";
     public static String orderBy1 = "";
-    public static String orderBy2 = "";
     public static String orderByClause = "";
-    public static String groupByList = "";
-    public static String groupBy1 = "";
-    public static String groupBy2 = "";
-    public static String groupBy3 = "";
-    public static String groupBy4 = "";
     public static String groupBy = "";
     public static String joinClause1 = "";
     public static String joinClause2 = "";
@@ -64,29 +55,20 @@ public class mainController implements Initializable {
     public static String castStatement = "";
     public static String castStatement2 = "";
 
-    //array list for the select statement
-    ArrayList<String> columnlist = new ArrayList<String>();
-    //array list for the group by and order by
-    ArrayList<String> gblist = new ArrayList<String>();
-    ArrayList<String> oblist = new ArrayList<String>();
+    
     //create a list of join types
     ObservableList<String> joinTypes = FXCollections.observableArrayList("", "LEFT ", "INNER ", "OUTER ");
     //create a list of where combo box stuff
     ObservableList<String> whereBox = FXCollections.observableArrayList("", " = ", " != ", " > ", " < ", " IS NULL ", " IS NOT NULL ");
     ObservableList<String> whereBoxConnector = FXCollections.observableArrayList("", " AND ", " OR ");
+    ObservableList<String> exlist1 = FXCollections.observableArrayList("", "YEAR ", "MONTH ", "WEEK ", "DAY ", "HOUR ", "MINUTE ");
+    
+    
     
     @FXML
     private TextField col1;
     @FXML
-    private TextField col2;
-    @FXML
-    private TextField col3;
-    @FXML
-    private TextField col4;
-    @FXML
     private TextField seldb;
-    @FXML
-    private TextField seltable;
     @FXML
     private TextField jcol1;
     @FXML
@@ -108,6 +90,16 @@ public class mainController implements Initializable {
     @FXML
     private TextField ex4;
     @FXML
+    private TextField ex5;
+    @FXML
+    private TextField ex6;
+    @FXML
+    private TextField ex7;
+    @FXML
+    private TextField ex8;
+    @FXML
+    private TextField ex9;
+    @FXML
     private TextField wcol1;
     @FXML
     private TextField wcol2;
@@ -118,10 +110,6 @@ public class mainController implements Initializable {
     @FXML
     private TextField obcol1;
     @FXML
-    private TextField obcol2;
-    @FXML
-    private TextField obcol3;
-    @FXML
     private TextField cast1;
     @FXML
     private TextField cast2;
@@ -130,7 +118,21 @@ public class mainController implements Initializable {
     @FXML
     private TextField cast4;
     @FXML
+    private TextField sum1;
+    @FXML
     private ComboBox cb1;
+    @FXML
+    private ComboBox excb1;
+    @FXML
+    private ComboBox excb2;
+    @FXML
+    private ComboBox excb3;
+    @FXML
+    private ComboBox excb4;
+    @FXML
+    private ComboBox excb5;
+    @FXML
+    private ComboBox excb6;
     @FXML
     private ComboBox cb2;
     @FXML
@@ -140,23 +142,12 @@ public class mainController implements Initializable {
     @FXML
     private ComboBox wcb3;
     @FXML
-    private CheckBox gb1;
-    @FXML
-    private CheckBox gb2;
-    @FXML
-    private CheckBox gb3;
-    @FXML
-    private CheckBox gb4;
-    @FXML
     private RadioButton obRad1;
     @FXML
     private RadioButton obRad2;
     @FXML
     private Button executeBtn;
-    @FXML
-    private Button clrBtn1;
-    @FXML
-    private Button clrBtn2;
+    
     @FXML
     private Button executeBtn2; //goodies tab
     @FXML
@@ -171,6 +162,13 @@ public class mainController implements Initializable {
     private TextField outputBox3;
     @FXML
     private TextField outputBox4; 
+    @FXML
+    private TextField outputBox5;
+    @FXML
+    private TextArea outputBox6;
+    
+    
+
 
     //event handler on click...?
     
@@ -195,11 +193,7 @@ public class mainController implements Initializable {
     @FXML
     private void handleResetButton(ActionEvent event) {
         col1.setText("");
-        col2.setText("");
-        col3.setText("");
-        col4.setText("");
         seldb.setText("");
-        seltable.setText("");
         jcol1.setText("");
         jcol2.setText("");
         jcol3.setText("");
@@ -211,34 +205,24 @@ public class mainController implements Initializable {
         wcol3.setText("");
         wcol4.setText("");
         obcol1.setText("");
-        obcol2.setText("");
-        obcol3.setText("");
         cb1.setValue("");
         cb2.setValue("");
         wcb1.setValue("");
         wcb2.setValue("");
         wcb3.setValue("");
-        gb1.setSelected(false);
-        gb2.setSelected(false);
-        gb3.setSelected(false);
-        gb4.setSelected(false);
-        obRad1.setSelected(true);
+        obRad1.setSelected(false);
         obRad2.setSelected(false);
         outputBox.setText("");
-        columnlist.clear();
-        gblist.clear();
-        oblist.clear();
         completeQuery = "";
         select1 = "";
         joinClause1 = "";
         joinClause2 = "";
-        groupByList = "";
-        orderByList = ""; 
         orderByClause="";
         whereClause1 = "";
         whereClauseConnection = "";
         whereClause2 = "";
         groupBy = "";
+        seldb.setText("");
         
     }
     
@@ -247,28 +231,7 @@ public class mainController implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) {
        completeQuery = ""; 
-       columnlist.clear();
-       gblist.clear();
-       oblist.clear();
-       //check each select field, and if it's not empty, add it to the array list
-       if (!col1.getText().isEmpty()) {
-           columnlist.add(col1.getText());
-       }
 
-       if (!col2.getText().isEmpty()) {
-           columnlist.add(col2.getText());
-       }
-       if (!col3.getText().isEmpty()) {
-           columnlist.add(col3.getText());
-       }
-
-       if (!col4.getText().isEmpty()) {
-           columnlist.add(col4.getText());
-       }
-       //join together all non-empty columns, separate by column
-       select1 = String.join(", ", columnlist);
-        
-        
         //if first combo box isn't set to empty string, create a join
         if (cb1.getValue() != "" && !jcol1.getText().isEmpty()) {
            joinClause1 = "\n" + cb1.getValue() + "JOIN " + jcol1.getText() + "\nON " + jcol2.getText() + " = " + jcol3.getText() ;
@@ -293,49 +256,14 @@ public class mainController implements Initializable {
         }
 
         whereClauseComplete = whereClause1 + whereClause2;
-
-        if (gb1.isSelected() && !col1.getText().isEmpty()) {
-            gblist.add(col1.getText());
-        }
-        if (gb2.isSelected() && !col2.getText().isEmpty()) {
-            gblist.add(col2.getText());
-        }
-        if (gb3.isSelected() && !col3.getText().isEmpty()) {
-            gblist.add(col3.getText());
-        }
-        if (gb4.isSelected() && !col4.getText().isEmpty()) {
-            gblist.add(col4.getText());
-        }
-        groupByList = String.join(", ", gblist);
-        
-        //if group by is selected but col empty, will not allow it
-        if ((gb1.isSelected() && !col1.getText().isEmpty()) || (gb2.isSelected() && !col2.getText().isEmpty())
-                || (gb3.isSelected() && !col3.getText().isEmpty()) || (gb4.isSelected() && !col4.getText().isEmpty())) {
-            groupBy = "\n" + "GROUP BY ";
-        }
         
         
         
        
         if (!obcol1.getText().isEmpty()) {
-            oblist.add(obcol1.getText());
+            orderBy1 = obcol1.getText();
         }
 
-        if (!obcol2.getText().isEmpty()) {
-            oblist.add(obcol2.getText());
-        }
-
-        if (!obcol3.getText().isEmpty()) {
-            oblist.add(obcol3.getText());
-        }
-
-        orderByList = String.join(", ", oblist);
-
-        //if any of the order by fields not empty, should be an order By statement. Otherwise, nope
-        //so for instance, if there's just one item in the Order By list, it'll output that one item
-        if (!obcol1.getText().isEmpty() || !obcol2.getText().isEmpty() || !obcol3.getText().isEmpty()) {
-            orderByClause = "\n" + "ORDER BY " + orderByList;
-        }
         
         if (obRad1.isSelected()){
                 ascend = " ASCENDING ";
@@ -347,8 +275,8 @@ public class mainController implements Initializable {
         //put the results of select query to output box
         
                 
-          completeQuery = ("SELECT " + select1 + "\n" + "FROM "
-                + seltable.getText() + joinClause1 + joinClause2 + whereClause1 + whereClauseConnection + whereClause2 + groupBy + groupByList + orderByClause + ascend + descend);
+          completeQuery = ("SELECT " + col1.getText() + "\n" + "FROM "
+                + seldb.getText() + joinClause1 + joinClause2 + whereClause1 + whereClauseConnection + whereClause2 + groupBy + orderByClause + ascend + descend);
           outputBox.setText(completeQuery);
         // Button was clicked, do something...  
         
@@ -373,16 +301,7 @@ public class mainController implements Initializable {
     }
     // extract 2 functionality 
     
-    @FXML
-    private void ClrBtn1(ActionEvent event) {
-        ex1.setText("");
-        ex2.setText("");
-        extractStatement = "";
-        outputBox2.setText("");  
-    }
-    
-    
-    
+
     
     
     @FXML
@@ -392,18 +311,86 @@ public class mainController implements Initializable {
         outputBox3.setText(extractStatement2);  
     }
     @FXML
+    private void ExecuteBtn4(ActionEvent event) {
+        
+        
+        outputBox4.setText("EXTRACT(" + excb1.getValue() + " FROM " + ex4.getText() + ")" );  
+    }
+    @FXML
+    private void ExecuteBtn5(ActionEvent event) {
+        
+       
+        outputBox5.setText("EXTRACT(" + excb2.getValue() + " FROM " + ex5.getText() + ") "
+                + " + " + "EXTRACT(" + excb3.getValue() + " FROM " + ex6.getText() + ") ");  
+    }
+    @FXML
+    private void ExecuteBtn6(ActionEvent event) {
+        
+        outputBox6.setText("EXTRACT(" + excb4.getValue() + " FROM " + ex7.getText() + ") "
+                + " + " + "EXTRACT(" + excb5.getValue() + " FROM " + ex8.getText() + ") " 
+                + " + " + "EXTRACT(" + excb6.getValue() + " FROM " + ex9.getText() + ") "
+        ); 
+    }
+    @FXML
+    private void ExecuteBtn7(ActionEvent event) {
+        
+        
+        sum1.setText("SUM(" + sum1.getText() + ")");  
+    }
+    
+    @FXML
+    private void ClrBtn1(ActionEvent event) {
+        ex1.setText("");
+        ex2.setText("");
+        extractStatement = "";
+        outputBox2.setText("");  
+    }
+    @FXML
     private void ClrBtn2(ActionEvent event) {
         ex3.setText("");
         ex4.setText("");
         extractStatement = "";
         outputBox3.setText("");  
     }
-    //cast statement generator. Currently, incomplete project
+    
     @FXML
-    private void ExecuteBtn4(ActionEvent event) {
-        
-          
+    private void ClrBtn3(ActionEvent event) {
+        ex3.setText("");
+        ex4.setText("");
+        extractStatement = "";
+        outputBox3.setText("");  
     }
+    @FXML
+    private void ClrBtn4(ActionEvent event) {
+        ex4.setText("");
+        outputBox4.setText("");
+        excb1.setValue("");
+    }
+    @FXML
+    private void ClrBtn5(ActionEvent event) {
+        ex5.setText("");
+        ex6.setText("");
+        outputBox5.setText("");  
+        excb2.setValue("");
+        excb3.setValue("");
+    }
+    
+    @FXML
+    private void ClrBtn6(ActionEvent event) {
+        ex7.setText("");
+        ex8.setText("");
+        ex9.setText("");
+        outputBox6.setText("");  
+        excb4.setValue("");
+        excb5.setValue("");
+        excb6.setValue("");
+    }
+    @FXML
+    private void ClrBtn7(ActionEvent event) {
+        sum1.setText(""); 
+    }
+    //cast statement generator. Currently, incomplete project
+   
     
     
     
@@ -416,7 +403,15 @@ public class mainController implements Initializable {
         wcb1.setItems(whereBox);
         wcb2.setItems(whereBoxConnector);
         wcb3.setItems(whereBox);
+        excb1.setItems(exlist1);
+        excb2.setItems(exlist1);
+        excb3.setItems(exlist1);
+        excb4.setItems(exlist1);
+        excb5.setItems(exlist1);
+        excb6.setItems(exlist1);
         
+        
+        //excb2.setItems(exlist1); //doesn't yet exist so commented out
                 
         //add functionality so both radio buttons can't be checked at once
         if (obRad1.isSelected()) {
